@@ -17,9 +17,6 @@ public class Pozicia {
         return stlpec;
     }
     public boolean jeRovnaka(int riadok, int stlpec) {
-        if (this.getRiadok() == riadok && this.getStlpec() == stlpec) {
-            return true;
-        }
-        return false;
+        return this.getRiadok() == riadok && this.getStlpec() == stlpec;
     }
 }
