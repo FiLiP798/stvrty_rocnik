@@ -33,10 +33,13 @@ public class HraMiny {
     public void debugPrint(){
         for (int riadok = 0; riadok < this.getPocetRiadkov(); riadok++) {
             for (int stlpec = 0; stlpec < this.getPocetStlpcov(); stlpec++) {
-                if (this.policka[riadok][stlpec].maMinu()) {
+                Policko policko = this.policka[riadok][stlpec];
+                if (policko.maMinu()) {
                     System.out.print("*" + " ");
+                } else if (policko.getPocet_min_okolo() == 0){
+                    System.out.print(" " + " ");
                 } else {
-                    System.out.print(this.policka[riadok][stlpec].getPocet_min_okolo() + " ");
+                    System.out.print(policko.getPocet_min_okolo() + " ");
                 }
             }
             System.out.println();
