@@ -55,7 +55,39 @@ public class HraMiny {
     }
 
     private void odkryOkolieVratane(int riadok, int stlpec) {
+        ArrayList<Pozicia> pozicie = new ArrayList<Pozicia>();
+        Pozicia prva = new Pozicia(riadok,stlpec);
+        pozicie.add(prva);
 
+        while(!pozicie.isEmpty()){
+            int index = pozicie.size()-1;
+            Pozicia pozicia = pozicie.get(index);
+            pozicie.remove(index);
+            Policko policko = this.policka[pozicia.getRiadok()][pozicia.getStlpec()];
+
+            policko.odkrySa();
+            this.pocetNeodkrytych--;
+
+            // prehladaj okolie
+            for (int dr = -1; dr <= 1; dr++) {
+                for (int ds = -1; ds <= 1; ds++) {
+                    if (dr == 0 && ds == 0) {
+                        continue;
+                    }
+                    int susednyRiadok = riadok + dr;
+                    int susednyStlpec = stlpec + ds;
+
+                    if (!this.jeVHracomPoli(susednyRiadok, susednyStlpec)) {
+                        continue;
+                    }
+
+                    Policko susedne = this.policka[susednyRiadok][susednyStlpec];
+                    if (!susedne.maMinu() && !susedne.jeOdkryte()) {
+                        pozicie.add(new Pozicia(susednyRiadok,susednyStlpec));
+                    }
+                }
+            }
+        }
     }
 
     public void debugPrint(){
