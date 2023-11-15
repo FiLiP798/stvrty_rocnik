@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class HraMiny {
     private Policko[][] policka;
-    private int pocet;
+    private StavHry stavHry;
 
     public HraMiny(int pocetRiadkov, int pocetStlpcov, ArrayList<Pozicia> miny) {
         this.policka = new Policko[pocetRiadkov][pocetStlpcov];
