@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class HraMiny {
     private Policko[][] policka;
     private StavHry stavHry;
+    private int pocetNeodkrytych;
 
     public HraMiny(int pocetRiadkov, int pocetStlpcov, ArrayList<Pozicia> miny) {
         this.policka = new Policko[pocetRiadkov][pocetStlpcov];
@@ -20,6 +21,8 @@ public class HraMiny {
                 this.policka[riadok][stlpec] = new Policko(jeTamMina,pocetMinVOkoli);
             }
         }
+        this.stavHry = StavHry.PREBIEHA;
+        this.pocetNeodkrytych = pocetRiadkov * pocetStlpcov - miny.size();
     }
 
     public int getPocetRiadkov() {
@@ -28,6 +31,31 @@ public class HraMiny {
 
     public int getPocetStlpcov() {
         return this.policka[0].length;
+    }
+
+    public void odkry(int riadok, int stlpec) {
+        if (!this.jeVHracomPoli(riadok,stlpec)) {
+            return;
+        }
+        if (this.stavHry != StavHry.PREBIEHA) {
+            return;
+        }
+        Policko policko = this.policka[riadok][stlpec];
+        if (policko.jeOdkryte() || policko.jeOznacene()) {
+            return;
+        }
+        if (policko.maMinu()) {
+            this.stavHry = StavHry.PREHRA;
+            return;
+        }
+        this.odkryOkolieVratane(riadok,stlpec);
+        if (this.pocetNeodkrytych == 0) {
+            this.stavHry = StavHry.VYHRA;
+        }
+    }
+
+    private void odkryOkolieVratane(int riadok, int stlpec) {
+
     }
 
     public void debugPrint(){
