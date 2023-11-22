@@ -26,7 +26,7 @@ public class HraMiny {
     }
 
     public Policko getPolicko(int riadok, int stlpec) {
-        return policka[riadok][stlpec];
+        return this.policka[riadok][stlpec];
     }
 
     public int getPocetRiadkov() {
