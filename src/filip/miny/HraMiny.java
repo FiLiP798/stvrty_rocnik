@@ -37,6 +37,10 @@ public class HraMiny {
         return this.policka[0].length;
     }
 
+    public StavHry getStavHry() {
+        return this.stavHry;
+    }
+
     public void odkry(int riadok, int stlpec) {
         if (!this.jeVHracomPoli(riadok,stlpec)) {
             return;
@@ -72,23 +76,31 @@ public class HraMiny {
             policko.odkrySa();
             this.pocetNeodkrytych--;
 
-            // prehladaj okolie
-            for (int dr = -1; dr <= 1; dr++) {
-                for (int ds = -1; ds <= 1; ds++) {
-                    if (dr == 0 && ds == 0) {
-                        continue;
-                    }
-                    int susednyRiadok = riadok + dr;
-                    int susednyStlpec = stlpec + ds;
 
-                    if (!this.jeVHracomPoli(susednyRiadok, susednyStlpec)) {
-                        continue;
-                    }
+            if (policko.getPocet_min_okolo() > 0) {
+                continue;
+            }
+            prehladajOkolie(pozicia,pozicie);
 
-                    Policko susedne = this.policka[susednyRiadok][susednyStlpec];
-                    if (!susedne.maMinu() && !susedne.jeOdkryte()) {
-                        pozicie.add(new Pozicia(susednyRiadok,susednyStlpec));
-                    }
+        }
+    }
+
+    public void prehladajOkolie(Pozicia pozicia, ArrayList<Pozicia> pozicie) {
+        for (int dr = -1; dr <= 1; dr++) {
+            for (int ds = -1; ds <= 1; ds++) {
+                if (dr == 0 && ds == 0) {
+                    continue;
+                }
+                int susednyRiadok = pozicia.getRiadok() + dr;
+                int susednyStlpec = pozicia.getStlpec() + ds;
+
+                if (!this.jeVHracomPoli(susednyRiadok, susednyStlpec)) {
+                    continue;
+                }
+
+                Policko susedne = this.policka[susednyRiadok][susednyStlpec];
+                if (!susedne.maMinu() && !susedne.jeOdkryte()) {
+                    pozicie.add(new Pozicia(susednyRiadok,susednyStlpec));
                 }
             }
         }
