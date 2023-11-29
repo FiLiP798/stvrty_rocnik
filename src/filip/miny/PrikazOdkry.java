@@ -1,6 +1,6 @@
 package filip.miny;
 
-public class PrikazOdkry {
+public class PrikazOdkry implements IPrikaz {
     private final int riadok;
     private final int stlpec;
 
@@ -9,6 +9,7 @@ public class PrikazOdkry {
         this.stlpec = stlpec;
     }
 
+    @Override
     public void vykonaj(HraMiny hra) {
         hra.odkry(this.riadok,this.stlpec);
     }

@@ -11,15 +11,24 @@ public class Main {
         miny.add(new Pozicia(3,3));
 
         Scanner scanner = new Scanner(System.in);
+        ParserPrikazov parser = new ParserPrikazov();
         HraMiny hra = new HraMiny(4,9, miny);
         KonzolovyZobrazovacHry zobrazovacHry = new KonzolovyZobrazovacHry();
+        zobrazovacHry.zobraz(hra);
 
         while(hra.getStavHry() == StavHry.PREBIEHA) {
+            System.out.print("> ");
             String vstup = scanner.nextLine();
-
-            PrikazOdkry prikaz = new PrikazOdkry(0,0);
-            prikaz.vykonaj(hra);
-            zobrazovacHry.zobraz(hra);
+            if (vstup.isBlank()) {
+                continue;
+            }
+            IPrikaz prikaz = parser.parsuj(vstup);
+            if (prikaz != null) {
+                prikaz.vykonaj(hra);
+                zobrazovacHry.zobraz(hra);
+            } else {
+                System.out.println("Zadal si nespravny prikaz");
+            }
         }
 
 
