@@ -62,6 +62,18 @@ public class HraMiny {
         }
     }
 
+    public void oznac(int riadok, int stlpec) {
+        this.policka[riadok][stlpec].oznacSa();
+    }
+
+    public void odznac(int riadok, int stlpec) {
+        this.policka[riadok][stlpec].odznacSa();
+    }
+
+    public void ukonci() {
+        this.stavHry = StavHry.UKONCENA;
+    }
+
     private void odkryOkolieVratane(int riadok, int stlpec) {
         ArrayList<Pozicia> pozicie = new ArrayList<Pozicia>();
         Pozicia prva = new Pozicia(riadok,stlpec);
