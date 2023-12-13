@@ -31,6 +31,14 @@ public class Main {
             }
         }
 
+        if (hra.getStavHry() == StavHry.VYHRA) {
+            System.out.println("Vyhral si");
+        } else if (hra.getStavHry() == StavHry.PREHRA) {
+            System.out.println("Prehral si");
+        } else if (hra.getStavHry() == StavHry.UKONCENA) {
+            System.out.println("Ukoncil si hru");
+        }
+
 
 
     }
