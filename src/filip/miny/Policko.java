@@ -1,6 +1,6 @@
 package filip.miny;
 
-public class Policko {
+public class Policko implements IPopisPolicka{
     // atributy
     private boolean jeOdkryte;
     private boolean jeOznacene;

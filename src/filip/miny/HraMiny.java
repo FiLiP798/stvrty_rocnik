@@ -25,7 +25,7 @@ public class HraMiny {
         this.pocetNeodkrytych = pocetRiadkov * pocetStlpcov - miny.size();
     }
 
-    public Policko getPolicko(int riadok, int stlpec) {
+    public IPopisPolicka getPolicko(int riadok, int stlpec) {
         return this.policka[riadok][stlpec];
     }
 
