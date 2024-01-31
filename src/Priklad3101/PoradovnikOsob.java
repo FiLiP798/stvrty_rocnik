@@ -16,15 +16,13 @@ public class PoradovnikOsob {
 
     public void pridajOsobuNaZaciatok(Osoba o) {
         list.addFirst(o);
-        indexMien.put(o.getMeno(),o);
-        indexRodnychCisiel.put(o.getRodneCislo(),o);
+        zaindexujOsobu(o);
 
     }
 
     public void pridajOsobuNaKoniec(Osoba o) {
         list.addLast(o);
-        indexMien.put(o.getMeno(),o);
-        indexRodnychCisiel.put(o.getRodneCislo(),o);
+        zaindexujOsobu(o);
     }
 
     Osoba getOsobuNaRade() {
@@ -77,6 +75,11 @@ public class PoradovnikOsob {
         for (Osoba osoba : list) {
             System.out.println(osoba.getMeno() + " " + osoba.getRodneCislo());
         }
+    }
+
+    private void zaindexujOsobu(Osoba o) {
+        indexMien.put(o.getMeno(), o);
+        indexRodnychCisiel.put(o.getRodneCislo(), o);
     }
 
 }
