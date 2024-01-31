@@ -43,7 +43,9 @@ public class PoradovnikOsob {
 
     public void odstranOsobuNaRade() {
         Osoba o = list.pollFirst();
-        odindexujOsobu(o);
+        if (o != null) {
+            odindexujOsobu(o);
+        }
     }
 
     Osoba najdiPodlaMena(String meno) {
