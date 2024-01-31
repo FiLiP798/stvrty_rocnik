@@ -1,10 +1,12 @@
 package Priklad3101;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
 
 public class PoradovnikOsob {
-    private LinkedList<Osoba> list;
+    private final LinkedList<Osoba> list;
+    //private Deque<Osoba> poradovnik; / --> prípadne cez toto
 
     public PoradovnikOsob() {
         list = new LinkedList<>();
@@ -16,15 +18,19 @@ public class PoradovnikOsob {
     }
 
     public void pridajOsobuNaKoniec(Osoba o) {
-        list.add(o);
+        list.addLast(o);
     }
 
     Osoba getOsobuNaRade() {
+        /*
         if (!list.isEmpty()) {
-            return list.get(0);
+            return list.getFirst();
         } else {
             return null;
         }
+
+         */
+        return this.list.peekFirst();
     }
 
     public int getPocetCakajucich() {
@@ -32,7 +38,7 @@ public class PoradovnikOsob {
     }
 
     public void odstranOsobuNaRade() {
-        list.removeFirst();
+        list.pollFirst();
     }
 
     Osoba najdiPodlaMena(String meno) {
@@ -54,8 +60,8 @@ public class PoradovnikOsob {
     }
 
     public void vypisVsetkyOsoby() {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getMeno() + " " + list.get(i).getRodneCislo());
+        for (Osoba osoba : list) {
+            System.out.println(osoba.getMeno() + " " + osoba.getRodneCislo());
         }
     }
 

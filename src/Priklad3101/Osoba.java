@@ -16,4 +16,12 @@ public class Osoba {
     public String getRodneCislo() {
         return rodneCislo;
     }
+
+    @Override
+    public String toString() {
+        return "Osoba{" +
+                "rodneCislo='" + rodneCislo + '\'' +
+                ", meno='" + meno + '\'' +
+                '}';
+    }
 }
