@@ -1,5 +1,7 @@
 package Ulohy;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         int prve = 10;
@@ -212,6 +214,24 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static boolean isValid(String text) {
+        ArrayList<Character> stack = new ArrayList<>();
+        for (int i = 0;i < text.length(); i++) {
+            char znak = text.charAt(i);
+            if (znak == '(') {
+                stack.add('(');
+                continue;
+            }
+            if (stack.isEmpty()) {
+                return false;
+            }
+            
+            char poslednyZnak = stack.get(stack.size() - 1);
+            stack.remove(stack.size() - 1);
+        }
+        return stack.isEmpty();
     }
 
 }
