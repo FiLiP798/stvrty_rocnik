@@ -1,24 +1,30 @@
 package Priklad3101;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 public class PoradovnikOsob {
     private final LinkedList<Osoba> list;
+    private Map<String, Osoba> indexMien;
+    private Map<String, Osoba> indexRodnychCisiel;
     //private Deque<Osoba> poradovnik; / --> prípadne cez toto
 
     public PoradovnikOsob() {
         list = new LinkedList<>();
+        indexMien = new HashMap<>();
+        indexRodnychCisiel = new TreeMap<>();
     }
 
     public void pridajOsobuNaZaciatok(Osoba o) {
         list.addFirst(o);
+        indexMien.put(o.getMeno(),o);
+        indexRodnychCisiel.put(o.getRodneCislo(),o);
 
     }
 
     public void pridajOsobuNaKoniec(Osoba o) {
         list.addLast(o);
+        indexMien.put(o.getMeno(),o);
+        indexRodnychCisiel.put(o.getRodneCislo(),o);
     }
 
     Osoba getOsobuNaRade() {
@@ -38,25 +44,33 @@ public class PoradovnikOsob {
     }
 
     public void odstranOsobuNaRade() {
-        list.pollFirst();
+        Osoba o = list.pollFirst();
+        indexMien.remove(o.getMeno());
+        indexRodnychCisiel.remove(o.getRodneCislo());
     }
 
     Osoba najdiPodlaMena(String meno) {
+        /*
         for (Osoba osoba : list) {
             if (osoba.getMeno().equals(meno)) {
                 return osoba;
             }
         }
-        return null;
+         */
+
+        return this.indexMien.get(meno);
     }
 
     Osoba najdiPodlaRodnehoCisla(String rodneCislo) {
+        /*
         for (Osoba osoba : list) {
             if (osoba.getRodneCislo().equals(rodneCislo)) {
                 return osoba;
             }
         }
-        return null;
+         */
+
+        return this.indexRodnychCisiel.get(rodneCislo);
     }
 
     public void vypisVsetkyOsoby() {
