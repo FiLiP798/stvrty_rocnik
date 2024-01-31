@@ -43,8 +43,7 @@ public class PoradovnikOsob {
 
     public void odstranOsobuNaRade() {
         Osoba o = list.pollFirst();
-        indexMien.remove(o.getMeno());
-        indexRodnychCisiel.remove(o.getRodneCislo());
+        odindexujOsobu(o);
     }
 
     Osoba najdiPodlaMena(String meno) {
@@ -80,6 +79,11 @@ public class PoradovnikOsob {
     private void zaindexujOsobu(Osoba o) {
         indexMien.put(o.getMeno(), o);
         indexRodnychCisiel.put(o.getRodneCislo(), o);
+    }
+
+    private void odindexujOsobu(Osoba o) {
+        indexMien.remove(o.getMeno());
+        indexRodnychCisiel.remove(o.getRodneCislo());
     }
 
 }
